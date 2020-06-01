@@ -736,7 +736,7 @@ class enrol_self_plugin extends enrol_plugin {
         $options = $this->get_newenrols_options();
         $mform->addElement('select', 'customint6', get_string('newenrols', 'enrol_self'), $options);
         $mform->addHelpButton('customint6', 'newenrols', 'enrol_self');
-        $mform->disabledIf('customint6', 'status', 'eq', ENROL_INSTANCE_DISABLED);
+        $mform->hideIf('customint6', 'status', 'eq', ENROL_INSTANCE_DISABLED);
 
         $passattribs = array('size' => '20', 'maxlength' => '50');
         $mform->addElement('passwordunmask', 'password', get_string('password', 'enrol_self'), $passattribs);
@@ -764,7 +764,7 @@ class enrol_self_plugin extends enrol_plugin {
         $options = array('optional' => false, 'defaultunit' => 86400);
         $mform->addElement('duration', 'expirythreshold', get_string('expirythreshold', 'core_enrol'), $options);
         $mform->addHelpButton('expirythreshold', 'expirythreshold', 'core_enrol');
-        $mform->disabledIf('expirythreshold', 'expirynotify', 'eq', 0);
+        $mform->hideIf('expirythreshold', 'expirynotify', 'eq', 0);
 
         $options = array('optional' => true);
         $mform->addElement('date_time_selector', 'enrolstartdate', get_string('enrolstartdate', 'enrol_self'), $options);

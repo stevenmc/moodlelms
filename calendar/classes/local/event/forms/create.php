@@ -236,7 +236,7 @@ class create extends \moodleform {
         $mform->addElement('text', 'repeats', get_string('repeatweeksl', 'calendar'), 'maxlength="10" size="10"');
         $mform->setType('repeats', PARAM_INT);
         $mform->setDefault('repeats', 1);
-        $mform->disabledIf('repeats', 'repeat', 'notchecked');
+        $mform->hideIf('repeats', 'repeat', 'notchecked');
         $mform->setAdvanced('repeat');
         $mform->setAdvanced('repeats');
     }

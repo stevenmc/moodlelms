@@ -51,8 +51,8 @@ class enrol_user_enrolment_form extends moodleform {
 
         $mform->addElement('select', 'duration', get_string('enrolperiod', 'enrol'), $periodmenu);
         $mform->setDefault('duration', $duration);
-        $mform->disabledIf('duration', 'timestart[enabled]', 'notchecked', 1);
-        $mform->disabledIf('duration', 'timeend[enabled]', 'checked', 1);
+        $mform->hideIf('duration', 'timestart[enabled]', 'notchecked', 1);
+        $mform->hideIf('duration', 'timeend[enabled]', 'checked', 1);
 
         $mform->addElement('date_time_selector', 'timeend', get_string('enroltimeend', 'enrol'), array('optional' => true));
 

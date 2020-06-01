@@ -111,7 +111,7 @@ class autogroup_form extends moodleform {
             }
             $mform->addElement('select', 'groupingid', get_string('selectfromgrouping', 'group'), $options);
             $mform->setDefault('groupingid', 0);
-            $mform->disabledIf('groupingid', 'notingroup', 'checked');
+            $mform->hideIf('groupingid', 'notingroup', 'checked');
         } else {
             $mform->addElement('hidden', 'groupingid');
             $mform->setType('groupingid', PARAM_INT);
@@ -126,7 +126,7 @@ class autogroup_form extends moodleform {
             }
             $mform->addElement('select', 'groupid', get_string('selectfromgroup', 'group'), $options);
             $mform->setDefault('groupid', 0);
-            $mform->disabledIf('groupid', 'notingroup', 'checked');
+            $mform->hideIf('groupid', 'notingroup', 'checked');
         } else {
             $mform->addElement('hidden', 'groupid');
             $mform->setType('groupid', PARAM_INT);
@@ -142,11 +142,11 @@ class autogroup_form extends moodleform {
         $mform->setDefault('allocateby', 'random');
 
         $mform->addElement('checkbox', 'nosmallgroups', get_string('nosmallgroups', 'group'));
-        $mform->disabledIf('nosmallgroups', 'groupby', 'noteq', 'members');
+        $mform->hideIf('nosmallgroups', 'groupby', 'noteq', 'members');
 
         $mform->addElement('checkbox', 'notingroup', get_string('notingroup', 'group'));
-        $mform->disabledIf('notingroup', 'groupingid', 'neq', 0);
-        $mform->disabledIf('notingroup', 'groupid', 'neq', 0);
+        $mform->hideIf('notingroup', 'groupingid', 'neq', 0);
+        $mform->hideIf('notingroup', 'groupid', 'neq', 0);
 
         if (has_capability('moodle/course:viewsuspendedusers', $coursecontext)) {
             $mform->addElement('checkbox', 'includeonlyactiveenrol', get_string('includeonlyactiveenrol', 'group'), '');
@@ -170,7 +170,7 @@ class autogroup_form extends moodleform {
 
         $mform->addElement('text', 'groupingname', get_string('groupingname', 'group'), $options);
         $mform->setType('groupingname', PARAM_TEXT);
-        $mform->disabledIf('groupingname', 'grouping', 'noteq', '-1');
+        $mform->hideIf('groupingname', 'grouping', 'noteq', '-1');
 
         $mform->addElement('hidden','courseid');
         $mform->setType('courseid', PARAM_INT);

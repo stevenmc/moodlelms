@@ -63,7 +63,7 @@ class completion_criteria_grade extends completion_criteria {
     public function config_form_display(&$mform, $data = null) {
         $mform->addElement('checkbox', 'criteria_grade', get_string('enable'));
         $mform->addElement('text', 'criteria_grade_value', get_string('graderequired', 'completion'));
-        $mform->disabledIf('criteria_grade_value', 'criteria_grade');
+        $mform->hideIf('criteria_grade_value', 'criteria_grade');
         $mform->setType('criteria_grade_value', PARAM_RAW); // Uses unformat_float.
         // Grades are stored in Moodle with 5 decimal points, make sure we do not accidentally round them
         // when setting the form value.

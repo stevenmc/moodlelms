@@ -273,7 +273,7 @@ class enrol_lti_plugin extends enrol_plugin {
 
         $mform->addElement('selectyesno', 'gradesynccompletion', get_string('requirecompletion', 'enrol_lti'));
         $mform->setDefault('gradesynccompletion', 0);
-        $mform->disabledIf('gradesynccompletion', 'gradesync', 0);
+        $mform->hideIf('gradesynccompletion', 'gradesync', 0);
 
         $mform->addElement('selectyesno', 'membersync', get_string('membersync', 'enrol_lti'));
         $mform->setDefault('membersync', 1);
@@ -286,7 +286,7 @@ class enrol_lti_plugin extends enrol_plugin {
         $mform->addElement('select', 'membersyncmode', get_string('membersyncmode', 'enrol_lti'), $options);
         $mform->setDefault('membersyncmode', \enrol_lti\helper::MEMBER_SYNC_ENROL_AND_UNENROL);
         $mform->addHelpButton('membersyncmode', 'membersyncmode', 'enrol_lti');
-        $mform->disabledIf('membersyncmode', 'membersync', 0);
+        $mform->hideIf('membersyncmode', 'membersync', 0);
 
         $mform->addElement('header', 'defaultheader', get_string('userdefaultvalues', 'enrol_lti'));
 

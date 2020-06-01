@@ -86,7 +86,7 @@ class completion_criteria_duration extends completion_criteria {
         $thresholdmenu[365 * DAYSECS] = get_string('numdays', 'core', 365);
 
         $mform->addElement('select', 'criteria_duration_days', get_string('enrolmentdurationlength', 'core_completion'), $thresholdmenu);
-        $mform->disabledIf('criteria_duration_days', 'criteria_duration');
+        $mform->hideIf('criteria_duration_days', 'criteria_duration');
 
         if ($this->id) {
             $mform->setDefault('criteria_duration', 1);
