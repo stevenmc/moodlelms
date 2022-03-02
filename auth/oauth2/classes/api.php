@@ -292,7 +292,7 @@ class api {
      * @return bool
      */
     public static function send_confirm_account_email($userinfo, $issuer) {
-        global $CFG, $DB;
+        global $CFG, $DB, $SESSION;
         require_once($CFG->dirroot.'/user/profile/lib.php');
         require_once($CFG->dirroot.'/user/lib.php');
 
@@ -345,6 +345,9 @@ class api {
             'token' => $user->secret,
             'username' => $userinfo['username']
         ];
+        if (property_exists($SESSION, 'wantsurl') && $SESSION->wantsurl) {
+            $params['redirect'] = str_replace($CFG->wwwroot, '', $SESSION->wantsurl);
+        }
         $confirmationurl = new moodle_url('/auth/oauth2/confirm-account.php', $params);
 
         $data->link = $confirmationurl->out(false);

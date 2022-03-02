@@ -380,13 +380,18 @@ class auth extends \auth_plugin_base {
      * @param string $message
      */
     public function print_confirm_required($title, $message) {
-        global $PAGE, $OUTPUT, $CFG;
+        global $PAGE, $OUTPUT, $CFG, $SESSION;
 
         $PAGE->navbar->add($title);
         $PAGE->set_title($title);
         $PAGE->set_heading($PAGE->course->fullname);
         echo $OUTPUT->header();
-        notice($message, "$CFG->wwwroot/index.php");
+        if (property_exists($SESSION, 'wantsurl') && $SESSION->wantsurl) {
+            $tourl = $SESSION->wantsurl;
+        } else {
+            $tourl = $CFG->wwwroot . "/index.php";
+        }
+        notice($message, $tourl);
     }
 
     /**
